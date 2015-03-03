@@ -2,7 +2,7 @@
 angular.module("myapp", [])
     .controller("ImagesController", function($scope, $http) {
 
-        $scope.tags = "";
+        $scope.tags = "sky";
 
         jsonFlickrFeed = function (data) {
             // var allImages = [];
@@ -27,12 +27,14 @@ angular.module("myapp", [])
                     description: item.description
                 };
             });
+            $(".scroll").removeClass("fadeOut animated");
             $scope.$apply();
 
         };
 
         // Run a search to the given URL
         $scope.search = function() {
+            $(".scroll").addClass("fadeOut animated");
         	var url = "https://api.flickr.com/services/feeds/photos_public.gne";
 
             $.ajax({

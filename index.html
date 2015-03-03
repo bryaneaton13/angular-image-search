@@ -2,11 +2,25 @@
 <html lang="en">
 <head>
 	<style>
-	body {
-	  padding-top: 20px;
-	}
-</style>
+		body {
+			width: 300px;
+		}
+		.fixed {
+			padding-top: 20px;
+			position: fixed;
+			background-color: white;
+			width: 300px;
+			height: 150px;
+			z-index: 100;
+		}
+		.scroll {
+			text-align: center;
+			width: 275px;
+			padding-top: 150px;
+		}
+	</style>
 	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.1/animate.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
  	<script src="main.js"></script>
@@ -16,22 +30,24 @@
 
   <div class="container" ng-controller="ImagesController" >
   	<div class="col-lg-offset-4 col-lg-4">
-	  	<form style="overflow:false" ng-submit="search()">
+	  	<form class="fixed" style="overflow:false" ng-submit="search()">
 	  		<div class="form-group">
 		  		<label for="tags">Tags</label>
 			  	<input class="form-control" id="tags" type="text" autofocus="true" ng-model="tags" ng-enter="search()" />
 			</div>
 		  	<input class="btn btn-success" type="submit" value="Search" />
 		</form>
-	    <div ng-repeat="image in images">
-	    	<h3>{{ image.title }}</h3>
-	    	<br />
-	    	<a data-ng-href="{{ image.link }}">
-	    		<img ng-src="{{ image.link }}" />
-	    	</a>
-	    	<div ng-bind-html>{{ image.description }}</div>
-	    	<hr>
-	    </div>
+		<div class="scroll">
+		    <div class="zoomIn animated" ng-repeat="image in images">
+		    	<h3>{{ image.title }}</h3>
+		    	<br />
+		    	<a data-ng-href="{{ image.link }}">
+		    		<img ng-src="{{ image.link }}" />
+		    	</a>
+		    	<div ng-bind-html>{{ image.description }}</div>
+		    	<hr>
+		    </div>
+		</div>
 	</div>
  </div>
 
